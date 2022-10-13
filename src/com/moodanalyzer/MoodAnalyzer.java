@@ -1,6 +1,7 @@
 package com.moodanalyzer;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class MoodAnalyzer {
@@ -23,6 +24,10 @@ public class MoodAnalyzer {
 	 * @return Happy Mood or Sad Mood according to words used in message
 	 */
 	public String analyseMood() {
+		// if message is null then have to return happy mood
+		if(message == null) {
+			return HAPPY_MOOD;
+		}
 		String word;
 		String resourceFolder = "resource/";
 		final String NO = "NO";
@@ -49,8 +54,17 @@ public class MoodAnalyzer {
 					}
 				}
 			}
-			catch (Exception e) {
+			// catch file not found exception if any data file not present
+			catch (FileNotFoundException e) {
 				System.out.println("can't read "+wordsFilesInfo[i][0]+" file");
+			}
+			// catch null pointer exception if got null value
+			catch (NullPointerException e) {
+				System.out.println("got null value");
+			}
+			// catch exception other than File not found exception and null pointer exception
+			catch (Exception e) {
+				System.out.println(e);
 			}	
 		}
 		switch(wordsFilesInfo[0][1]+" "+wordsFilesInfo[1][1]+" "+wordsFilesInfo[2][1]) {
@@ -90,7 +104,7 @@ public class MoodAnalyzer {
 		System.out.println("Welcome to mood analyzer program");
 		
 		MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-		System.out.println(moodAnalyzer.analyseMood("I happy mood"));
+		System.out.println(moodAnalyzer.analyseMood());
 	}
 
 }

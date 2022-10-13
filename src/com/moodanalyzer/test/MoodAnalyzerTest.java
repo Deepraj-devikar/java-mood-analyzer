@@ -1,7 +1,5 @@
 package com.moodanalyzer.test;
 
-import static org.junit.Assert.*;
-
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -39,6 +37,7 @@ public class MoodAnalyzerTest {
 			{"I am in Happy Mood", tempMoodAnalyzer.HAPPY_MOOD},
 			{"I am Not in Happy Mood", tempMoodAnalyzer.SAD_MOOD},
 			{"I am in Any Mood", tempMoodAnalyzer.HAPPY_MOOD},
+			{null, tempMoodAnalyzer.HAPPY_MOOD}
 		});
 	}
 
@@ -51,6 +50,12 @@ public class MoodAnalyzerTest {
 	public void testUsingConstructor() {
 		MoodAnalyzer tempMoodAnalyzer = new MoodAnalyzer(message);
 		Assert.assertEquals(tempMoodAnalyzer.analyseMood(), mood);
+	}
+	
+	@Test
+	public void testUsingNullMessage() {
+		MoodAnalyzer tempMoodAnalyzer = new MoodAnalyzer();
+		Assert.assertEquals(tempMoodAnalyzer.analyseMood(), tempMoodAnalyzer.HAPPY_MOOD);
 	}
 
 }
