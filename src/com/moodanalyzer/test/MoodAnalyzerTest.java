@@ -38,6 +38,7 @@ public class MoodAnalyzerTest {
 			{"I am Not in Sad Mood", tempMoodAnalyzer.HAPPY_MOOD},
 			{"I am in Happy Mood", tempMoodAnalyzer.HAPPY_MOOD},
 			{"I am Not in Happy Mood", tempMoodAnalyzer.SAD_MOOD},
+			{"I am in Any Mood", tempMoodAnalyzer.HAPPY_MOOD},
 		});
 	}
 
