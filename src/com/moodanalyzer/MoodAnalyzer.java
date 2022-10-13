@@ -7,14 +7,22 @@ public class MoodAnalyzer {
 	public final String HAPPY_MOOD = "Happy Mood";
 	public final String SAD_MOOD = "Sad Mood";
 	
+	public String message;
+	
+	public MoodAnalyzer() {
+	}
+	
+	public MoodAnalyzer(String message) {
+		this.message = message;
+	}
+	
 	/**
 	 * read message and check which kind of words it contains happy words or sad words
 	 * and analyze the mood according words it contain 
 	 * 
-	 * @param message
 	 * @return Happy Mood or Sad Mood according to words used in message
 	 */
-	public String analyseMood(String message) {
+	public String analyseMood() {
 		String word;
 		String resourceFolder = "resource/";
 		final String NO = "NO";
@@ -64,6 +72,18 @@ public class MoodAnalyzer {
 			return HAPPY_MOOD;
 		}
 		return HAPPY_MOOD;
+	}
+	
+	/**
+	 * read message and check which kind of words it contains happy words or sad words
+	 * and analyze the mood according words it contain 
+	 * 
+	 * @param message
+	 * @return Happy Mood or Sad Mood according to words used in message
+	 */
+	public String analyseMood(String message) {
+		this.message = message;
+		return analyseMood();
 	}
 
 	public static void main(String[] args) {

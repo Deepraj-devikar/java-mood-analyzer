@@ -46,5 +46,11 @@ public class MoodAnalyzerTest {
 	public void test() {
 		Assert.assertEquals(moodAnalyzer.analyseMood(message), mood);
 	}
+	
+	@Test
+	public void testUsingConstructor() {
+		MoodAnalyzer tempMoodAnalyzer = new MoodAnalyzer(message);
+		Assert.assertEquals(tempMoodAnalyzer.analyseMood(), mood);
+	}
 
 }
