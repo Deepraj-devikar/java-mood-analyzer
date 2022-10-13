@@ -23,6 +23,7 @@ public class MoodAnalyzer {
 		// 1st file contain negation kind of words like no, not, can't, don't
 		// 2nd file contain sad kind of words like sad, unhappy, sorrow
 		// 3rd file contain happy kind of words like happy, joy
+		// NOTE:- data collected from https://www.thesaurus.com/browse/ web site for sad synonyms and happy synonyms 
 		// and NO is showing currently not any kind of words message have 
 		// because we didn't check words occur in message yet
 		String[][] wordsFilesInfo = {
