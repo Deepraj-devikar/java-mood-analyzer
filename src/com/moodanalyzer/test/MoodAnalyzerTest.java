@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import com.moodanalyzer.MoodAnalysisException;
 import com.moodanalyzer.MoodAnalyzer;
 
 @RunWith(Parameterized.class)
@@ -37,25 +38,39 @@ public class MoodAnalyzerTest {
 			{"I am in Happy Mood", tempMoodAnalyzer.HAPPY_MOOD},
 			{"I am Not in Happy Mood", tempMoodAnalyzer.SAD_MOOD},
 			{"I am in Any Mood", tempMoodAnalyzer.HAPPY_MOOD},
-			{null, tempMoodAnalyzer.HAPPY_MOOD}
+			{null, tempMoodAnalyzer.HAPPY_MOOD},
+			{"     ", tempMoodAnalyzer.HAPPY_MOOD},
+			{"", tempMoodAnalyzer.HAPPY_MOOD}
 		});
 	}
 
 	@Test
 	public void test() {
-		Assert.assertEquals(moodAnalyzer.analyseMood(message), mood);
+		try {
+			Assert.assertEquals(moodAnalyzer.analyseMood(message), mood);
+		} catch (MoodAnalysisException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void testUsingConstructor() {
 		MoodAnalyzer tempMoodAnalyzer = new MoodAnalyzer(message);
-		Assert.assertEquals(tempMoodAnalyzer.analyseMood(), mood);
+		try {
+			Assert.assertEquals(tempMoodAnalyzer.analyseMood(), mood);
+		} catch (MoodAnalysisException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void testUsingNullMessage() {
 		MoodAnalyzer tempMoodAnalyzer = new MoodAnalyzer();
-		Assert.assertEquals(tempMoodAnalyzer.analyseMood(), tempMoodAnalyzer.HAPPY_MOOD);
+		try {
+			Assert.assertEquals(tempMoodAnalyzer.analyseMood(), tempMoodAnalyzer.HAPPY_MOOD);
+		} catch (MoodAnalysisException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

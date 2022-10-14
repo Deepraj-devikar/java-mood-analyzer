@@ -23,10 +23,14 @@ public class MoodAnalyzer {
 	 * 
 	 * @return Happy Mood or Sad Mood according to words used in message
 	 */
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalysisException{
 		// if message is null then have to return happy mood
 		if(message == null) {
-			return HAPPY_MOOD;
+			throw new MoodAnalysisException(MoodAnalysisErrors.NULL);
+		} else if(message.isEmpty()) {
+			throw new MoodAnalysisException(MoodAnalysisErrors.EMPTY);
+		} else if(message.isBlank()) {
+			throw new MoodAnalysisException(MoodAnalysisErrors.BLANK);
 		}
 		String word;
 		String resourceFolder = "resource/";
@@ -95,7 +99,7 @@ public class MoodAnalyzer {
 	 * @param message
 	 * @return Happy Mood or Sad Mood according to words used in message
 	 */
-	public String analyseMood(String message) {
+	public String analyseMood(String message) throws MoodAnalysisException{
 		this.message = message;
 		return analyseMood();
 	}
@@ -104,7 +108,11 @@ public class MoodAnalyzer {
 		System.out.println("Welcome to mood analyzer program");
 		
 		MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-		System.out.println(moodAnalyzer.analyseMood());
+		try {
+			System.out.println(moodAnalyzer.analyseMood());
+		} catch (MoodAnalysisException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
